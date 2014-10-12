@@ -9,7 +9,7 @@
   <tbody>
     {{#each model itemController='components.component'}}
     <tr>
-      <td>{{name}}</td>
+      <td>{{link-to name 'components.show' id}}</td>
       <td>{{description}}</td>
       <td>{{amount}}</td>
     </tr>

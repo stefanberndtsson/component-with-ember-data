@@ -1,0 +1,24 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <td>{{model.name}}</td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td>{{model.description}}</td>
+  </tr>
+  <tr>
+    <th>Amount</th>
+    <td>{{model.amount_id}}</td>
+  </tr>
+  <tr>
+    <th>Spares</th>
+    <td>
+      {{#if model.spares}}
+      Yes
+      {{else}}
+      No
+      {{/if}}
+    </td>
+  </tr>
+</table>

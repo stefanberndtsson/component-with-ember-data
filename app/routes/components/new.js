@@ -14,7 +14,7 @@ export default Ember.Route.extend({
 	    var that = this;
 	    component.save().then(function(newModel) {
 		newModel.unloadRecord();
-		that.transitionTo('components.index');
+		that.transitionTo('components.show', newModel.id);
 	    });
 	}
     }
