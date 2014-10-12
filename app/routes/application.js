@@ -7,6 +7,7 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
 	controller.set('amounts', {});
+	controller.set('amountsSelection', model);
 	model.forEach(function(item) {
 	    controller.set('amounts.'+item.id, item);
 	});

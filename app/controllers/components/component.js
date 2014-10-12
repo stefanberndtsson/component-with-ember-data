@@ -8,5 +8,5 @@ export default Ember.ObjectController.extend({
 	} else {
 	    return amountObject.get('name');
 	}
-    }.property('amount_id')
+    }.property('model')
 });
