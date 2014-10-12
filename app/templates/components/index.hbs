@@ -1,3 +1,25 @@
+<ul class="pagination">
+  {{#if model.meta.pagination.previous}}
+  <li>
+    {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}&laquo;{{/link-to}}
+  </li>
+  {{else}}
+  <li class="disabled"><a>&laquo;</a></li>
+  {{/if}}
+  {{#each page in pageArray}}
+  <li {{bind-attr class="page.active:active"}}>
+    {{#link-to 'components.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
+  </li>
+  {{/each}}
+  <li></li>
+  {{#if model.meta.pagination.next}}
+  <li>
+    {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}&raquo;{{/link-to}}
+  </li>
+  {{else}}
+  <li class="disabled"><a>&raquo;</a></li>
+  {{/if}}
+</ul>
 <table class="table">
   <thead>
     <tr>

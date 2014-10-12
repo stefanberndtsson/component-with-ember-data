@@ -1,14 +1,21 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    beforeModel: function() {
-	this.store.unloadAll('component');
+    queryParams: {
+	page: {
+	    refreshModel: true
+	}
     },
-    model: function() {
-	return this.store.find('component');
+    model: function(params) {
+	return this.store.find('component', {page: params.page || 1});
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
+
+	if(controller.get('page') > controller.get('model.meta.pagination.pages')) {
+	    controller.transitionToRoute('components.index', {queryParams: {page: 1}});
+	    controller.set('page', 1);
+	}
 	controller.set('amounts', this.controllerFor('application').get('amounts'));
     }
 });
