@@ -5,5 +5,6 @@ export default DS.Model.extend({
     description: DS.attr('string'),
     amount_id: DS.attr('number'),
     amount_value: DS.attr('number'),
-    spares: DS.attr('boolean')
+    spares: DS.attr('boolean'),
+    tags: DS.attr('object')
 });

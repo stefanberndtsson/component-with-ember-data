@@ -1,4 +1,3 @@
-<form role="form" {{action 'saveComponent' model on=submit}}>
   <div class="form-group">
     <label>Name
       {{input type="text" classBinding=":form-control" value=model.name}}
@@ -8,6 +7,14 @@
     <label>Description
       {{textarea classBinding=":form-control" cols="60" rows="10" value=model.description}}
     </label>
+  </div>
+  <div class="form-group tags-form">
+    <label>Tags
+      {{input type="text" classBinding=":form-control" value=tagInput action='addTag'}}
+    </label>
+    {{#each tag in model.tags}}
+    <span class="label label-default"><span class="glyphicon glyphicon-remove" {{action 'removeTag' tag}}></span> {{tag}}</span>
+    {{/each}}
   </div>
   <div class="form-group">
     <label>Amount<br/>
@@ -29,6 +36,5 @@
     </label>
   </div>
   <div class="form-group">
-    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-primary" {{action 'saveComponent' model}}>Save</button>
   </div>
-</form>

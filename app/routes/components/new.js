@@ -8,6 +8,7 @@ export default Ember.Route.extend({
 	controller.set('model', model);
 	controller.set('amounts', this.controllerFor('application').get('amounts'));
 	controller.set('amountsSelection', this.controllerFor('application').get('amountsSelection'));
+	controller.set('tagsSelection', this.controllerFor('application').get('tagsSelection'));
     },
     actions: {
 	saveComponent: function(component) {

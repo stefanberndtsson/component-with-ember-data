@@ -26,6 +26,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Amount</th>
+      <th>Tags</th>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +35,11 @@
       <td>{{link-to name 'components.show' id}}</td>
       <td>{{description}}</td>
       <td>{{amount}}</td>
+      <td>
+	{{#each tag in tags}}
+	<span class="label label-default">{{tag}}</span>
+	{{/each}}
+      </td>
     </tr>
     {{/each}}
   </tbody>
