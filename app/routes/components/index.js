@@ -16,6 +16,5 @@ export default Ember.Route.extend({
 	    controller.transitionToRoute('components.index', {queryParams: {page: 1}});
 	    controller.set('page', 1);
 	}
-	controller.set('amounts', this.controllerFor('application').get('amounts'));
     }
 });

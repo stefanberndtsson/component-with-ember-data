@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
+    needs: ['application'],
+    amountsBinding: 'controllers.application.amounts',
     itemController: 'components.component',
     queryParams: ['page'],
     sortProperties: ['name'],

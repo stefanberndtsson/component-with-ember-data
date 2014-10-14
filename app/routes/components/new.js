@@ -6,15 +6,15 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
-	controller.set('amounts', this.controllerFor('application').get('amounts'));
-	controller.set('amountsSelection', this.controllerFor('application').get('amountsSelection'));
-	controller.set('tagsSelection', this.controllerFor('application').get('tagsSelection'));
     },
     actions: {
 	saveComponent: function(component) {
 	    var that = this;
 	    component.save().then(function(newModel) {
 		newModel.unloadRecord();
+		that.store.find('tag').then(function(tags) {
+		    that.controllerFor('application').set('tagsSelection', tags);
+		});
 		that.transitionTo('components.show', newModel.id);
 	    });
 	}
