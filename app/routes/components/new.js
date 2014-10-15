@@ -6,6 +6,8 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
+	controller.set('error', false);
+	controller.set('amountValueError', false);
     },
     actions: {
 	saveComponent: function(component) {
@@ -16,6 +18,14 @@ export default Ember.Route.extend({
 		    that.controllerFor('application').set('tagsSelection', tags);
 		});
 		that.transitionTo('components.show', newModel.id);
+	    },function(reason) {
+		that.controller.set('error', true);
+		if(reason.errors.amountValue) {
+		    that.controller.set('amountValueError', reason.errors.amountValue);
+		} else {
+		    that.controller.set('amountValueError', false);
+		}
+		console.log("Error", reason.errors);
 	    });
 	}
     }
