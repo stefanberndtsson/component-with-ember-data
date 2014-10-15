@@ -12,14 +12,10 @@ export default Ember.Route.extend({
     setupController: function(controller, model) {
 	controller.set('content', {});
 	controller.set('amounts', {});
-	controller.set('tags', []);
 	controller.set('amountsSelection', model.amount);
 	controller.set('tagsSelection', model.tag);
 	model.amount.forEach(function(item) {
 	    controller.set('amounts.'+item.id, item);
-	});
-	model.tag.forEach(function(item) {
-	    controller.get('tags').pushObject(item.name);
 	});
     }
 });
