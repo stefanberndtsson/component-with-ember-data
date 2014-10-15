@@ -24,7 +24,7 @@ export default Ember.ObjectController.extend({
 	    });
 	    var duplicate = false;
 	    this.get('model.tags').forEach(function(item) {
-		if(item === tagValue) {
+		if(item.toLowerCase() === tagValue.toLowerCase()) {
 		    duplicate = true;
 		}
 	    });
