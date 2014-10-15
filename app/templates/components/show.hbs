@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th>Amount</th>
-    <td>{{model.amount_id}}</td>
+    <td>{{model.amountCode}}</td>
   </tr>
   <tr>
     <th>Spares</th>
@@ -21,4 +21,14 @@
       {{/if}}
     </td>
   </tr>
+  <tr>
+    <th>Tags</th>
+    <td>
+      {{#each tag in tags}}
+      <span class="label label-default">{{tag}}</span>
+      {{/each}}
+    </td>
+  </tr>
 </table>
+{{#link-to 'components.edit' model.id classBinding=":btn :btn-primary"}}Edit{{/link-to}}
+

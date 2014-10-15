@@ -10,6 +10,11 @@ export default Ember.ObjectController.extend({
 	if(!amountObject) { return false; }
 	return amountObject.get('must_have_value');
     }.property('model.amountCode'),
+    fixAmount: function() {
+	if(this.get('model.amountId')) {
+	    this.set('model.amountCode', parseInt(this.get('model.amountId')));
+	}
+    }.observes('model.amountId'),
     actions: {
 	addTag: function(data) {
 	    var lower = data.toLowerCase();

@@ -9,6 +9,7 @@ Router.map(function() {
     this.resource('components', function() {
 	this.route('new');
 	this.route('show', { path: '/:id' });
+	this.route('edit', { path: '/edit/:id'});
     });
 });
 

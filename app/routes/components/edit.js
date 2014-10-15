@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    model: function(x, y, z) {
-	return this.store.createRecord('component', {});
+    model: function(params) {
+	return this.store.find('component', params.id);
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
 	controller.set('error', false);
+	controller.set('model.amountId', model.get('amountCode').toString());
     },
     actions: {
 	saveComponent: function(component) {
