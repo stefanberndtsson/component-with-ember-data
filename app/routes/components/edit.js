@@ -18,7 +18,7 @@ export default Ember.Route.extend({
 		    that.controllerFor('application').set('tagsSelection', tags);
 		});
 		that.transitionTo('components.show', newModel.id);
-	    },function(reason) {
+	    },function() {
 		that.controller.set('error', true);
 	    });
 	}

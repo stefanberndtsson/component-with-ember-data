@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    model: function(x, y, z) {
+    model: function() {
 	return this.store.createRecord('component', {});
     },
     setupController: function(controller, model) {
@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 		    that.controllerFor('application').set('tagsSelection', tags);
 		});
 		that.transitionTo('components.show', newModel.id);
-	    },function(reason) {
+	    },function() {
 		that.controller.set('error', true);
 	    });
 	}
