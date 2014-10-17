@@ -7,7 +7,6 @@ export default Ember.Route.extend({
     setupController: function(controller, model) {
 	controller.set('model', model);
 	controller.set('error', false);
-	controller.set('model.amountId', model.get('amountCode').toString());
     },
     actions: {
 	saveComponent: function(component) {

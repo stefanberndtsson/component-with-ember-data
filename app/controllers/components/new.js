@@ -6,10 +6,10 @@ export default Ember.ObjectController.extend({
     amountsBinding: 'controllers.application.amounts',
     amountsSelectionBinding: 'controllers.application.amountsSelection',
     needsValue: function() {
-	var amountObject = this.get('amounts')[this.get('model.amountCode')];
+	var amountObject = this.get('amounts')[this.get('model.amountId')];
 	if(!amountObject) { return false; }
 	return amountObject.get('must_have_value');
-    }.property('model.amountCode'),
+    }.property('model.amountId'),
     actions: {
 	addTag: function(data) {
 	    var lower = data.toLowerCase();
