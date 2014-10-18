@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import DS from "ember-data";
+import ENV from '../config/environment';
 
 export default DS.ActiveModelAdapter.extend({
-    host: "http://localhost:3019",
+    host: ENV.APP.serviceURL,
     ajax: function(url, type, hash) {
 	if (Ember.isEmpty(hash)) { hash = {}; }
 	if (Ember.isEmpty(hash.data)) { hash.data = {}; }

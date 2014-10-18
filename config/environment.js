@@ -16,7 +16,6 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-	authenticationBaseURL: 'http://localhost:3019/session',
     }
   };
 
@@ -27,6 +26,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
+      ENV.APP.authenticationBaseURL = 'http://localhost:3019/session';
+      ENV.APP.serviceURL = 'http://localhost:3019/';
   }
 
   if (environment === 'test') {
@@ -42,7 +43,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+      ENV.APP.authenticationBaseURL = 'https://component-api.nocrew.org/session';
+      ENV.APP.serviceURL = 'https://component-api.nocrew.org/';
   }
 
   return ENV;
