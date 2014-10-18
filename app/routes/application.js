@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ApplicationRouteMixin, {
     model: function() {
 	console.log("ApplicationRoute.model");
 	var that = this;
@@ -17,5 +18,13 @@ export default Ember.Route.extend({
 	model.amount.forEach(function(item) {
 	    controller.set('amounts.'+item.id, item);
 	});
+    },
+    actions: {
+	sessionInvalidationSucceeded: function() {
+	    this.transitionTo('components.index');
+	},
+	sessionAuthenticationFailed: function(error) {
+	    this.controllerFor('login').set('error', error);
+	}
     }
 });
