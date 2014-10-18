@@ -28,7 +28,6 @@ var CustomAuthenticator = Base.extend({
 	});
     },
     invalidate: function() {
-	localStorage.removeItem('user');
 	return new Ember.RSVP.Promise(function(resolve) {
 	    resolve();
 	});
