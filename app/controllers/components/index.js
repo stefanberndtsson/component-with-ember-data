@@ -4,7 +4,7 @@ export default Ember.ArrayController.extend({
     needs: ['application'],
     amountsBinding: 'controllers.application.amounts',
     itemController: 'components.component',
-    queryParams: ['page'],
+    queryParams: ['page', 'query'],
     sortProperties: ['name'],
     pageArray: function() {
 	var pArray = [];

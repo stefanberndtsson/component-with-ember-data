@@ -27,7 +27,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
       ENV.APP.authenticationBaseURL = 'http://localhost:3019/session';
-      ENV.APP.serviceURL = 'http://localhost:3019/';
+      ENV.APP.serviceURL = 'http://localhost:3019';
   }
 
   if (environment === 'test') {
@@ -44,7 +44,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
       ENV.APP.authenticationBaseURL = 'https://component-api.nocrew.org/session';
-      ENV.APP.serviceURL = 'https://component-api.nocrew.org/';
+      ENV.APP.serviceURL = 'https://component-api.nocrew.org';
   }
 
   return ENV;

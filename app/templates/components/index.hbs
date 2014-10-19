@@ -1,46 +1,60 @@
-<ul class="pagination">
-  {{#if model.meta.pagination.previous}}
-  <li>
-    {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}&laquo;{{/link-to}}
-  </li>
-  {{else}}
-  <li class="disabled"><a>&laquo;</a></li>
-  {{/if}}
-  {{#each page in pageArray}}
-  <li {{bind-attr class="page.active:active"}}>
-    {{#link-to 'components.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
-  </li>
-  {{/each}}
-  <li></li>
-  {{#if model.meta.pagination.next}}
-  <li>
-    {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}&raquo;{{/link-to}}
-  </li>
-  {{else}}
-  <li class="disabled"><a>&raquo;</a></li>
-  {{/if}}
-</ul>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Amount</th>
-      <th>Tags</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each model itemController='components.component'}}
-    <tr>
-      <td>{{link-to name 'components.show' id}}</td>
-      <td>{{description}}</td>
-      <td>{{amount}}</td>
-      <td>
-	{{#each tag in tags}}
-	<span class="label label-default">{{tag}}</span>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="input-group">
+	{{input value=searchQuery classBinding=":form-control" action="search" placeholder="Enter query"}}
+	<span class="input-group-btn">
+	  <button class="btn btn-primary" {{action search searchQuery}}>Search</button>
+	</span>
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="pagination">
+	{{#if model.meta.pagination.previous}}
+	<li>
+	  {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}&laquo;{{/link-to}}
+	</li>
+	{{else}}
+	<li class="disabled"><a>&laquo;</a></li>
+	{{/if}}
+	{{#each page in pageArray}}
+	<li {{bind-attr class="page.active:active"}}>
+	  {{#link-to 'components.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
+	</li>
 	{{/each}}
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+	<li></li>
+	{{#if model.meta.pagination.next}}
+	<li>
+	  {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}&raquo;{{/link-to}}
+	</li>
+	{{else}}
+	<li class="disabled"><a>&raquo;</a></li>
+	{{/if}}
+      </ul>
+      <table class="table">
+	<thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Description</th>
+	    <th>Amount</th>
+	    <th>Tags</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  {{#each model itemController='components.component'}}
+	  <tr>
+	    <td>{{link-to name 'components.show' id}}</td>
+	    <td>{{description}}</td>
+	    <td>{{amount}}</td>
+	    <td>
+	      {{#each tag in tags}}
+	      <span class="label label-default">{{tag}}</span>
+	      {{/each}}
+	    </td>
+	  </tr>
+	  {{/each}}
+	</tbody>
+      </table>
+    </div>
+  </div>
+</div>
