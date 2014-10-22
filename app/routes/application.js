@@ -21,29 +21,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
     actions: {
 	sessionAuthenticationSucceeded: function() {
-	    var nextRoute = sessionStorage.getItem('routeAfterAuthentication');
-	    sessionStorage.removeItem('routeAfterAuthentication');
-	    if(nextRoute) {
-		if(sessionStorage.getItem('formDataId')) {
-		    var formDataId = sessionStorage.getItem('formDataId');
-		    sessionStorage.removeItem('formDataId')
-		    this.transitionTo(nextRoute, formDataId);
-		} else {
-		    sessionStorage.setItem('refreshFormData', true);
-		    this.transitionTo(nextRoute);
-		}
-	    } else {
-		return this._super();
-	    }
+	    return this._super();
 	},
 	sessionInvalidationSucceeded: function() {
-	    var nextRoute = sessionStorage.getItem('routeAfterAuthentication');
-	    var formData = sessionStorage.getItem('formData');
-	    if(nextRoute) {
-		this.send('authenticateSession');
-	    } else {
-		this.transitionTo('components.index');
-	    }
+	    this.transitionTo('components.index');
+//	    return this._super();
 	},
 	sessionAuthenticationFailed: function(error) {
 	    this.controllerFor('login').set('error', error);

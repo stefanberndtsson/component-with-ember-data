@@ -2,9 +2,11 @@
   <div class="col-md-6 col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
+	{{#if session.isAuthenticated}}
 	<div class="panel-title pull-right">
 	  {{#link-to 'components.edit' id classBinding=":btn :btn-primary"}}Edit{{/link-to}}
 	</div>
+	{{/if}}
 	<div class="panel-title"><h2>{{name}}</h2></div>
       </div>
       <div class="panel-body">
@@ -18,6 +20,21 @@
 	{{#each tag in tags}}
 	<span class="label label-default">{{tag}}</span>
 	{{/each}}
+	{{#if session.isAuthenticated}}
+	<div class="col-xs-12">&nbsp;</div>
+	<div class="col-xs-3">Datasheet</div>
+	<div class="col-xs-9">
+	  {{file-upload componentId=id dataType="Datasheet"}}
+	</div>
+	<div class="col-xs-3">Document</div>
+	<div class="col-xs-9">
+	  {{file-upload componentId=id dataType="Document"}}
+	</div>
+	<div class="col-xs-3">Image</div>
+	<div class="col-xs-9">
+	  {{file-upload componentId=id dataType="Image"}}
+	</div>
+	{{/if}}
       </div>
     </div>
   </div>

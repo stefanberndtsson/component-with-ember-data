@@ -1,22 +1,26 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li>
-          {{#link-to 'components.index'}}List components{{/link-to}}
-        </li>
-        <li>
-          {{#link-to 'components.new'}}Add component{{/link-to}}
-        </li>
-      </ul>
+    <ul class="nav navbar-nav">
+      <li>
+        {{#link-to 'components.index'}}List components{{/link-to}}
+      </li>
       {{#if session.isAuthenticated}}
-      <ul class="nav navbar-nav navbar-right">
-        <p class="navbar-text">Logged in as {{currentUser.name}}</p>
-        <li>
-          <a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a>
-        </li>
-      </ul>
+      <li>
+        {{#link-to 'components.new'}}Add component{{/link-to}}
+      </li>
       {{/if}}
-    </div><!-- /.navbar-collapse -->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {{#if session.isAuthenticated}}
+      <p class="navbar-text">Logged in as {{currentUser.name}}</p>
+      <li>
+        <a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a>
+      </li>
+      {{else}}
+      <li>
+	{{link-to "Login" 'login'}}
+      </li>
+      {{/if}}
+    </ul>
   </div><!-- /.container-fluid -->
 </nav>

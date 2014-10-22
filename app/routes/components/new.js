@@ -3,14 +3,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model: function() {
-	var preloadData = {};
-	if(sessionStorage.getItem('refreshFormData') && sessionStorage.getItem('formData')) {
-	    preloadData = JSON.parse(sessionStorage.getItem('formData'));
-	}
-	sessionStorage.removeItem('routeAfterAuthentication');
-	sessionStorage.removeItem('refreshFormData');
-	sessionStorage.removeItem('formData');
-	return this.store.createRecord('component', preloadData);
+	return this.store.createRecord('component', {});
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
@@ -26,10 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		});
 		that.transitionTo('components.show', newModel.id);
 	    },function(reason) {
-		if(reason.status == 401) {
-		    var controller = that.controllerFor('components.new');
-		    sessionStorage.setItem('routeAfterAuthentication', 'components.new');
-		    sessionStorage.setItem('formData', JSON.stringify(controller.get('model').toJSON()));
+		if(reason.status === 401) {
 		    that.send('invalidateSession');
 		} else {
 		    that.controller.set('error', true);
