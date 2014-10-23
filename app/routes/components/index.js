@@ -25,7 +25,6 @@ export default Ember.Route.extend({
     },
     actions: {
 	search: function(query) {
-	    console.log("Query:", query);
 	    this.transitionTo('components.index', {queryParams: {query: query}});
 	}
     }

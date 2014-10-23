@@ -11,3 +11,7 @@ span.has-error {
 .panel-title a.btn-primary {
     color: #fff !important;
 }
+
+.hide-element {
+    display: none !important;
+}

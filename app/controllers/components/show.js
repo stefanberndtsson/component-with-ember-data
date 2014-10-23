@@ -10,5 +10,8 @@ export default Ember.ObjectController.extend({
 	} else {
 	    return amountObject.get('name');
 	}
-    }.property('model')
+    }.property('model'),
+    hasFiles: function() {
+	return !Ember.$.isEmptyObject(this.get('model.files'));
+    }.property('model.files')
 });

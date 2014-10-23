@@ -3,10 +3,15 @@ import ENV from '../config/environment';
 
 export default Ember.FileField.extend({
     url: '',
-    multiple: true,
+    multiple: false,
     filesDidChange: (function() {
+	var that = this;
 	var serviceUrl = ENV.APP.serviceURL;
 	var files = this.get('files');
+	if(Ember.isEmpty(files)) {
+	    return;
+	}
+	var store = this.get('targetObject.store');
 	var componentId = this.get('componentId');
 	var dataType = this.get('dataType');
 	var uploadUrl = serviceUrl+"/asset_data";
@@ -18,8 +23,9 @@ export default Ember.FileField.extend({
 	    url: uploadUrl
 	});
 
-	uploader.on('progress', function(ev) {
-	    console.log("Upload progress: ", ev.percent);
+	uploader.on('didUpload', function(ev) {
+	    that.set('value', '');
+	    store.find('component', componentId).then(function(newModel) { newModel.reload(); });
 	});
 
 	if (!Ember.isEmpty(files)) {

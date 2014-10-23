@@ -25,7 +25,6 @@ var CustomAuthenticator = Base.extend({
     },
     restore: function(properties) {
 	var that = this;
-	console.log("CustomAuthenticator.restore", properties);
 	return new Ember.RSVP.Promise(function(resolve, reject) {
 	    Ember.$.ajax({
 		type: 'GET',

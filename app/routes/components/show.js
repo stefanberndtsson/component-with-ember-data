@@ -6,5 +6,10 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
+    },
+    actions: {
+	upload: function(fileUploadId) {
+	    Ember.$('#upload'+fileUploadId).click();
+	}
     }
 });

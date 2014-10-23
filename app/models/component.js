@@ -6,5 +6,6 @@ export default DS.Model.extend({
     amountId: DS.attr('number'),
     amountValue: DS.attr('number'),
     spares: DS.attr('boolean'),
-    tags: DS.attr('object')
+    tags: DS.attr('object'),
+    files: DS.attr('object')
 });
