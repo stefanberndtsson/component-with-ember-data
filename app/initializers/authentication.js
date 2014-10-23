@@ -11,7 +11,9 @@ var CustomAuthenticator = Base.extend({
 	    url: ENV.APP.authenticationBaseURL+'/'+token
 	}).then(function(response) {
 	    Ember.run(function() {
-		that.container.lookup('controller:application').set('currentUser', response.user);
+		var session = that.container.lookup('simple-auth-session:main');
+		session.set('username', response.user.username);
+		session.set('name', response.user.name);
 	    });
 	}, function() {
 	    var controller = that.container.lookup('controller:application');
@@ -20,6 +22,23 @@ var CustomAuthenticator = Base.extend({
 	this.refreshIdentifier = Ember.run.later(function() {
 	    that.refreshSession(token);
 	}, 5000);
+    },
+    restore: function(properties) {
+	var that = this;
+	console.log("CustomAuthenticator.restore", properties);
+	return new Ember.RSVP.Promise(function(resolve, reject) {
+	    Ember.$.ajax({
+		type: 'GET',
+		url: ENV.APP.authenticationBaseURL+'/'+properties.token
+	    }).then(function(response) {
+		resolve(properties);
+		that.refreshIdentifier = Ember.run.later(function() {
+		    that.refreshSession(properties.token);
+		}, 5000);
+	    }, function() {
+		reject();
+	    });
+	});
     },
     authenticate: function(credentials) {
 	var that = this;
@@ -35,8 +54,12 @@ var CustomAuthenticator = Base.extend({
 	    }).then(function(response) {
 		var token = response.access_token;
 		Ember.run(function() {
-		    that.container.lookup('controller:application').set('currentUser', response.user);
-		    resolve({ authenticated: true, token: token });
+		    resolve({
+			authenticated: true,
+			token: token,
+			username: response.user.username,
+			name: response.user.name
+		    });
 		});
 		that.refreshIdentifier = Ember.run.later(function() {
 		    that.refreshSession(token);
