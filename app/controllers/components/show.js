@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../../config/environment';
 
 export default Ember.ObjectController.extend({
     needs: ['application'],
@@ -13,5 +14,6 @@ export default Ember.ObjectController.extend({
     }.property('model'),
     hasFiles: function() {
 	return !Ember.$.isEmptyObject(this.get('model.files'));
-    }.property('model.files')
+    }.property('model.files'),
+    fileURL: ENV.APP.fileURL
 });

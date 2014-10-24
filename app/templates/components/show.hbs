@@ -51,7 +51,7 @@
 	  </thead>
 	  <tbody>
 	    {{#each file in files.datasheets}}
-	    <tr><td>{{file.name}}</td></tr>
+	    <tr><td>{{file-link file.id file.name}}</td></tr>
 	    {{/each}}
 	  </tbody>
 	</table>
@@ -63,7 +63,7 @@
 	  </thead>
 	  <tbody>
 	    {{#each file in files.documents}}
-	    <tr><td>{{file.name}}</td></tr>
+	    <tr><td>{{file-link file.id file.name}}</td></tr>
 	    {{/each}}
 	  </tbody>
 	</table>
@@ -74,9 +74,11 @@
 	    <tr><th>Images</th></tr>
 	  </thead>
 	  <tbody>
+	    <tr><td>
 	    {{#each file in files.images}}
-	    <tr><td>{{file.name}}</td></tr>
+	    {{image-link file.id file.name 160}}
 	    {{/each}}
+	    </td></tr>
 	  </tbody>
 	</table>
 	{{/if}}
