@@ -1,14 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <div class="form-group">
-      <div class="input-group">
-	{{input value=searchQuery classBinding=":form-control" action="search" placeholder="Enter query"}}
-	<span class="input-group-btn">
-	  <button class="btn btn-primary" {{action search searchQuery}}>Search</button>
-	</span>
+    <div class="col-xs-12">
+      <div class="form-group">
+	<div class="input-group">
+	  {{input value=searchQuery classBinding=":form-control" action="search" placeholder="Enter query"}}
+	  <span class="input-group-btn">
+	    <button class="btn btn-primary" {{action search searchQuery}}>Search</button>
+	  </span>
+	</div>
       </div>
     </div>
-    <div class="panel-body">
+    {{#if model.meta.pagination.per_page}}
+    <div class="col-xs-12">
       <ul class="pagination">
 	{{#if model.meta.pagination.previous}}
 	<li>
@@ -31,7 +34,14 @@
 	<li class="disabled"><a>&raquo;</a></li>
 	{{/if}}
       </ul>
-      {{#if model}}
+    </div>
+    <div class="col-xs-12">
+      Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
+      {{#if singleResult}}result{{else}}results{{/if}}
+    </div>
+    {{/if}}
+    {{#if model}}
+    <div class="col-xs-12">
       <table class="table">
 	<thead>
 	  <tr>
@@ -62,7 +72,7 @@
 	  {{/each}}
 	</tbody>
       </table>
-      {{/if}}
     </div>
+    {{/if}}
   </div>
 </div>
