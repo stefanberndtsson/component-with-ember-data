@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../../config/environment';
 
 export default Ember.Route.extend({
     model: function(params) {
@@ -10,6 +11,15 @@ export default Ember.Route.extend({
     actions: {
 	upload: function(fileUploadId) {
 	    Ember.$('#upload'+fileUploadId).click();
+	},
+	removeAsset: function(component, assetId) {
+	    var session = this.get('session');
+	    Ember.$.ajax({
+		type: 'DELETE',
+		url: ENV.APP.fileURL+'/'+assetId+'?token='+session.get('token')
+	    }).then(function() {
+		component.reload();
+	    });
 	}
     }
 });

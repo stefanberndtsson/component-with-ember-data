@@ -38,7 +38,7 @@
     </div>
   </div>
   {{#if hasFiles}}
-  <div class="col-md-6 col-lg-4">
+  <div class="col-md-6 col-lg-6">
     <div class="panel panel-default">
       <div class="panel-heading">
 	<div class="panel-title"><h2>Files</h2></div>
@@ -52,7 +52,15 @@
 	  <tbody>
 	    <tr><td>
 		{{#each file in files.datasheets}}
-		{{image-link file.id file.name 320}}
+		<div class="col-md-4">
+		  <div class="thumbnail-asset">
+		  {{image-link file.id file.name 240}}
+		  {{#if session.isAuthenticated}}
+		  <span {{action 'removeAsset' model file.id}}
+                        class="remove-asset glyphicon glyphicon-remove"></span>
+		  {{/if}}
+		  </div>
+		</div>
 		{{/each}}
 	    </td></tr>
 	  </tbody>
@@ -61,11 +69,19 @@
 	{{#if files.documents}}
 	<table class="table">
 	  <thead>
-	    <tr><th>Documents</th></tr>
+	    <tr><th>Documents</th><th></th></tr>
 	  </thead>
 	  <tbody>
 	    {{#each file in files.documents}}
-	    <tr><td>{{file-link file.id file.name}}</td></tr>
+	    <tr>
+	      <td>{{file-link file.id file.name}}</td>
+	      <td>
+		{{#if session.isAuthenticated}}
+		<span {{action 'removeAsset' model file.id}}
+                      class="pull-right glyphicon glyphicon-remove"></span>
+		{{/if}}
+	      </td>
+	    </tr>
 	    {{/each}}
 	  </tbody>
 	</table>
@@ -78,7 +94,15 @@
 	  <tbody>
 	    <tr><td>
 		{{#each file in files.images}}
-		{{image-link file.id file.name 160}}
+		<div class="col-md-4">
+		  <div class="thumbnail-asset">
+		    {{image-link file.id file.name 160}}
+		    {{#if session.isAuthenticated}}
+		    <span {{action 'removeAsset' model file.id}}
+                          class="remove-asset glyphicon glyphicon-remove"></span>
+		    {{/if}}
+		  </div>
+		</div>
 		{{/each}}
 	    </td></tr>
 	  </tbody>
