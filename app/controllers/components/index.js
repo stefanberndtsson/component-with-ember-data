@@ -36,7 +36,7 @@ export default Ember.ArrayController.extend({
 	}
     }.property('model.meta.pagination.page', 'model.meta.pagination.per_page', 'model.meta.query.total'),
     singleResult: function() {
-	if(this.get('model.meta.query.total') == 1) { return true; }
+	if(this.get('model.meta.query.total') === 1) { return true; }
 	return false;
     }.property('model.meta.query.total')
 });
