@@ -23,7 +23,7 @@ export default Ember.FileField.extend({
 	    url: uploadUrl
 	});
 
-	uploader.on('didUpload', function(ev) {
+	uploader.on('didUpload', function() {
 	    that.set('value', '');
 	    store.find('component', componentId).then(function(newModel) { newModel.reload(); });
 	});

@@ -29,7 +29,7 @@ var CustomAuthenticator = Base.extend({
 	    Ember.$.ajax({
 		type: 'GET',
 		url: ENV.APP.authenticationBaseURL+'/'+properties.token
-	    }).then(function(response) {
+	    }).then(function() {
 		resolve(properties);
 		that.refreshIdentifier = Ember.run.later(function() {
 		    that.refreshSession(properties.token);
