@@ -50,9 +50,11 @@
 	    <tr><th>Datasheets</th></tr>
 	  </thead>
 	  <tbody>
-	    {{#each file in files.datasheets}}
-	    <tr><td>{{image-link file.id file.name 320}}</td></tr>
-	    {{/each}}
+	    <tr><td>
+		{{#each file in files.datasheets}}
+		{{image-link file.id file.name 320}}
+		{{/each}}
+	    </td></tr>
 	  </tbody>
 	</table>
 	{{/if}}
@@ -75,9 +77,9 @@
 	  </thead>
 	  <tbody>
 	    <tr><td>
-	    {{#each file in files.images}}
-	    {{image-link file.id file.name 160}}
-	    {{/each}}
+		{{#each file in files.images}}
+		{{image-link file.id file.name 160}}
+		{{/each}}
 	    </td></tr>
 	  </tbody>
 	</table>
