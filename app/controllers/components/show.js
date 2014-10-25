@@ -15,5 +15,14 @@ export default Ember.ObjectController.extend({
     hasFiles: function() {
 	return !Ember.$.isEmptyObject(this.get('model.files'));
     }.property('model.files'),
-    fileURL: ENV.APP.fileURL
+    fileURL: ENV.APP.fileURL,
+    descriptionSummary: function() {
+	var lines = this.get('model.description').split(/\n/);
+	return lines[0];
+    }.property('model.description'),
+    descriptionRest: function() {
+	var lines = this.get('model.description').split(/\n/);
+	lines.shift();
+	return lines.join('  \n');
+    }.property('model.description')
 });

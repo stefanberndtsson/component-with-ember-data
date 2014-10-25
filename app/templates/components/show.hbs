@@ -10,7 +10,8 @@
 	<div class="panel-title"><h2>{{name}}</h2></div>
       </div>
       <div class="panel-body">
-	<p class="lead">{{description}}</p>
+	<p class="lead">{{descriptionSummary}}</p>
+	<div>{{markdown-text descriptionRest}}</div>
 	<p>
 	  <strong>Amount: </strong>{{amount}}
 	  {{#if spares}}
