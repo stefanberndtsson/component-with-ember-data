@@ -8,5 +8,9 @@ export default Ember.ObjectController.extend({
 	} else {
 	    return amountObject.get('name');
 	}
-    }.property('model')
+    }.property('model'),
+    descriptionSummary: function() {
+	var lines = this.get('model.description').split(/\n/);
+	return lines[0];
+    }.property('model.description')
 });
