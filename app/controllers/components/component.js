@@ -12,5 +12,10 @@ export default Ember.ObjectController.extend({
     descriptionSummary: function() {
 	var lines = this.get('model.description').split(/\n/);
 	return lines[0];
-    }.property('model.description')
+    }.property('model.description'),
+    tagsArray: function() {
+	return this.get('model.tags').map(function(item) {
+	    return {name: item, query: 'tags:'+item};
+	});
+    }.property('model.tags')
 });

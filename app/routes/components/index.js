@@ -17,6 +17,7 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
+	controller.set('searchQuery', controller.get('query'));
 
 	if(controller.get('page') > controller.get('model.meta.pagination.pages')) {
 	    controller.transitionToRoute('components.index', {queryParams: {page: 1}});

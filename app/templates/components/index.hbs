@@ -59,8 +59,9 @@
 	    <td>{{descriptionSummary}}</td>
 	    <td>{{amount}}</td>
 	    <td>
-	      {{#each tag in tags}}
-	      <span class="label label-default">{{tag}}</span>
+	      {{#each tag in tagsArray}}
+		{{link-to tag.name 'components.index' (query-params query=tag.query)
+                          class="label label-default"}}
 	      {{/each}}
 	    </td>
 	    <td>
