@@ -42,6 +42,7 @@ export default Ember.ArrayController.extend({
     actions: {
 	clearForm: function() {
 	    this.set('query', '');
+	    this.set('page', 1);
 	}
     }
 });
