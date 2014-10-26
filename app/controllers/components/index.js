@@ -38,5 +38,10 @@ export default Ember.ArrayController.extend({
     singleResult: function() {
 	if(this.get('model.meta.query.total') === 1) { return true; }
 	return false;
-    }.property('model.meta.query.total')
+    }.property('model.meta.query.total'),
+    actions: {
+	clearForm: function() {
+	    this.set('query', '');
+	}
+    }
 });

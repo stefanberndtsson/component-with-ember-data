@@ -39,3 +39,23 @@ span.has-error {
 .remove-asset {
     display: none;
 }
+
+.search-group {
+    position: relative;
+}
+
+#searchinput {
+    width: 200px;
+}
+#searchclear {
+    position: absolute;
+    right: 10px;
+    top: 1.8em;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 125%;
+    cursor: pointer;
+    color: #aaa;
+    z-index: 10;
+}
