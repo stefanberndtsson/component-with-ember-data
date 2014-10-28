@@ -53,7 +53,7 @@
 	  <tbody>
 	    <tr><td>
 		{{#each file in files.datasheets}}
-		<div class="col-md-4">
+		<div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
 		  <div class="thumbnail-asset">
 		  {{image-link file.id file.name 240}}
 		  {{#if session.isAuthenticated}}
@@ -95,7 +95,7 @@
 	  <tbody>
 	    <tr><td>
 		{{#each file in files.images}}
-		<div class="col-md-4">
+		<div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
 		  <div class="thumbnail-asset">
 		    {{image-link file.id file.name 160}}
 		    {{#if session.isAuthenticated}}
