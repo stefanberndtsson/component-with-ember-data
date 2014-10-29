@@ -10,6 +10,23 @@ export default Ember.ObjectController.extend({
 	if(!amountObject) { return false; }
 	return amountObject.get('must_have_value');
     }.property('model.amountId'),
+    descriptionSummary: function() {
+	var lines = this.get('model.description').split(/\n/);
+	return lines[0];
+    }.property('model.description'),
+    descriptionRest: function() {
+	var lines = this.get('model.description').split(/\n/);
+	lines.shift();
+	return lines.join('  \n');
+    }.property('model.description'),
+    amount: function() {
+	var amountObject = this.get('amounts')[this.get('amountId')];
+	if(amountObject.get('must_have_value')) {
+	    return this.get('amountValue');
+	} else {
+	    return amountObject.get('name');
+	}
+    }.property('model', 'model.amountId', 'model.amountValue'),
     actions: {
 	addTag: function(data) {
 	    var lower = data.toLowerCase();
