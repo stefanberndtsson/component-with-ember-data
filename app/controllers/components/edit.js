@@ -1,32 +1,6 @@
-import Ember from 'ember';
+import ComponentsComponentController from '../components/component';
 
-export default Ember.ObjectController.extend({
-    needs: ['application'],
-    tagsSelectionBinding: 'controllers.application.tagsSelection',
-    amountsBinding: 'controllers.application.amounts',
-    amountsSelectionBinding: 'controllers.application.amountsSelection',
-    needsValue: function() {
-	var amountObject = this.get('amounts')[this.get('model.amountId')];
-	if(!amountObject) { return false; }
-	return amountObject.get('must_have_value');
-    }.property('model.amountId'),
-    descriptionSummary: function() {
-	var lines = this.get('model.description').split(/\n/);
-	return lines[0];
-    }.property('model.description'),
-    descriptionRest: function() {
-	var lines = this.get('model.description').split(/\n/);
-	lines.shift();
-	return lines.join('  \n');
-    }.property('model.description'),
-    amount: function() {
-	var amountObject = this.get('amounts')[this.get('amountId')];
-	if(amountObject.get('must_have_value')) {
-	    return this.get('amountValue');
-	} else {
-	    return amountObject.get('name');
-	}
-    }.property('model', 'model.amountId', 'model.amountValue'),
+export default ComponentsComponentController.extend({
     actions: {
 	addTag: function(data) {
 	    var lower = data.toLowerCase();
