@@ -1,4 +1,7 @@
 {{partial 'header'}}
 {{partial 'menu'}}
+{{#if loggedOut}}
+<div class="alert alert-danger">Logged out</div>
+{{/if}}
 {{outlet}}
 {{partial 'footer'}}

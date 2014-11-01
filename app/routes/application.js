@@ -24,6 +24,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	    return this._super();
 	},
 	sessionInvalidationSucceeded: function() {
+	    var that = this;
+	    this.get('controller').set('loggedOut', true);
+	    Ember.run.later(function() {
+		that.get('controller').set('loggedOut', false);
+	    }, 2000);
 	    this.transitionTo('components.index');
 //	    return this._super();
 	},
