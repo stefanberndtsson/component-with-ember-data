@@ -11,119 +11,119 @@
       </div>
     </div>
     {{#if model.meta.pagination.per_page}}
-    <div class="col-xs-12 hidden-md hidden-lg">
-      <ul class="pager">
-	<li class="previous">
+      <div class="col-xs-12 hidden-md hidden-lg">
+        <ul class="pager">
+	  <li class="previous">
+	    {{#if model.meta.pagination.previous}}
+	      {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}
+	      Previous
+	      {{/link-to}}
+	    {{else}}
+	      <span>Previous</span>
+	    {{/if}}
+	  </li>
+	  <li class="next">
+	    {{#if model.meta.pagination.next}}
+	      {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}
+	      Next
+	      {{/link-to}}
+	    {{else}}
+	      <span>Next</span>
+	    {{/if}}
+	  </li>
+        </ul>
+      </div>
+      <div class="col-md-12 hidden-xs hidden-sm">
+        <ul class="pagination">
 	  {{#if model.meta.pagination.previous}}
-	  {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}
-	  Previous
-	  {{/link-to}}
+	    <li>
+	      {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}
+	      <span class="hidden-xs hidden-sm">&laquo;</span>
+	      {{/link-to}}
+	    </li>
 	  {{else}}
-	  <span>Previous</span>
+	    <li class="disabled"><a>
+	      <span class="hidden-xs hidden-sm">&laquo;</span>
+	    </a></li>
 	  {{/if}}
-	</li>
-	<li class="next">
+	  {{#each page in pageArray}}
+	    <li {{bind-attr class="page.active:active :hidden-xs :hidden-sm"}}>
+	      {{#link-to 'components.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
+	    </li>
+	  {{/each}}
+	  <li></li>
 	  {{#if model.meta.pagination.next}}
-	  {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}
-	  Next
-	  {{/link-to}}
+	    <li>
+	      {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}
+	      <span class="hidden-xs hidden-sm">&raquo;</span>
+	      {{/link-to}}
+	    </li>
 	  {{else}}
-	  <span>Next</span>
+	    <li class="disabled"><a>
+	      <span class="hidden-xs hidden-sm">&raquo;</span>
+	    </a></li>
 	  {{/if}}
-	</li>
-      </ul>
-    </div>
-    <div class="col-md-12 hidden-xs hidden-sm">
-      <ul class="pagination">
-	{{#if model.meta.pagination.previous}}
-	<li>
-	  {{#link-to 'components.index' (query-params page=model.meta.pagination.previous)}}
-	  <span class="hidden-xs hidden-sm">&laquo;</span>
-	  {{/link-to}}
-	</li>
-	{{else}}
-	<li class="disabled"><a>
-	    <span class="hidden-xs hidden-sm">&laquo;</span>
-	</a></li>
-	{{/if}}
-	{{#each page in pageArray}}
-	<li {{bind-attr class="page.active:active :hidden-xs :hidden-sm"}}>
-	  {{#link-to 'components.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
-	</li>
-	{{/each}}
-	<li></li>
-	{{#if model.meta.pagination.next}}
-	<li>
-	  {{#link-to 'components.index' (query-params page=model.meta.pagination.next)}}
-	  <span class="hidden-xs hidden-sm">&raquo;</span>
-	  {{/link-to}}
-	</li>
-	{{else}}
-	<li class="disabled"><a>
-	    <span class="hidden-xs hidden-sm">&raquo;</span>
-	</a></li>
-	{{/if}}
-      </ul>
-    </div>
-    <div class="col-xs-12">
-      Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
-      {{#if singleResult}}result{{else}}results{{/if}}
-    </div>
+        </ul>
+      </div>
+      <div class="col-xs-12">
+        Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
+        {{#if singleResult}}result{{else}}results{{/if}}
+      </div>
     {{/if}}
     {{#if model}}
-    <div class="col-md-12 hidden-sm hidden-xs">
-      <table class="table">
-	<thead>
-	  <tr>
-	    <th>Name</th>
-	    <th>Description</th>
-	    <th>Amount</th>
-	    <th>Tags</th>
-	    <th>Datasheet</th>
-	  </tr>
-	</thead>
-	<tbody>
-	  {{#each model itemController='components.component'}}
-	  <tr>
-	    <td>{{link-to name 'components.show' id}}</td>
-	    <td>{{descriptionSummary}}</td>
-	    <td>{{amount}}</td>
-	    <td>
-	      {{#each tag in tagsArray}}
-	      {{link-to tag.name 'components.index' (query-params query=tag.query)
-              class="label label-default"}}
-	      {{/each}}
-	    </td>
-	    <td>
-	      {{#if files.datasheets}}
-	      {{pdf-link files.datasheets.0.id}}
-	      {{/if}}
-	    </td>
-	  </tr>
-	  {{/each}}
-	</tbody>
-      </table>
-    </div>
+      <div class="col-md-12 hidden-sm hidden-xs">
+        <table class="table">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Description</th>
+	      <th>Amount</th>
+	      <th>Tags</th>
+	      <th>Datasheet</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {{#each model itemController='components.component'}}
+	    <tr>
+	      <td>{{link-to name 'components.show' id}}</td>
+	      <td>{{descriptionSummary}}</td>
+	      <td>{{amount}}</td>
+	      <td>
+	        {{#each tag in tagsArray}}
+	          {{link-to tag.name 'components.index' (query-params query=tag.query)
+                  class="label label-default"}}
+	        {{/each}}
+	      </td>
+	      <td>
+	        {{#if files.datasheets}}
+	          {{pdf-link files.datasheets.0.id}}
+	        {{/if}}
+	      </td>
+	    </tr>
+	    {{/each}}
+	  </tbody>
+        </table>
+      </div>
+      <div class="panel-body"></div>
+      <ul class="list-group hidden-md hidden-lg">
+        {{#each model itemController='components.component'}}
+        <li class="list-group-item list-group-component">
+          {{#link-to 'components.show' id}}
+          <div class="nowrap-line">
+	    <div class="list-group-component-title">{{name}}</div>
+	    <div class="list-group-component-amount">({{amount}})</div>
+          </div>
+          <div class="list-group-component-body nowrap-line">{{descriptionSummary}}</div>
+          <div>
+	    {{#each tag in tagsArray}}
+	      <div class="label label-default">{{tag.name}}</div>
+	    {{/each}}
+          </div>
+          {{/link-to}}
+          <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
+        </li>
+        {{/each}}
+      </ul>
+    {{/if}}
   </div>
-  <div class="panel-body"></div>
-  <ul class="list-group hidden-md hidden-lg">
-    {{#each model itemController='components.component'}}
-    <li class="list-group-item list-group-component">
-      {{#link-to 'components.show' id}}
-      <div class="nowrap-line">
-	<div class="list-group-component-title">{{name}}</div>
-	<div class="list-group-component-amount">({{amount}})</div>
-      </div>
-      <div class="list-group-component-body nowrap-line">{{descriptionSummary}}</div>
-      <div>
-	{{#each tag in tagsArray}}
-	<div class="label label-default">{{tag.name}}</div>
-	{{/each}}
-      </div>
-      {{/link-to}}
-      <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
-    </li>
-    {{/each}}
-  </ul>
-  {{/if}}
 </div>
