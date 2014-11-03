@@ -4,6 +4,8 @@ export default Ember.ArrayController.extend({
     needs: ['application'],
     amountsBinding: 'controllers.application.amounts',
     itemController: 'components.component',
+    isMobileBinding: 'controllers.application.isMobile',
+    isDesktopBinding: 'controllers.application.isDesktop',
     queryParams: ['page', 'query'],
     sortProperties: ['name'],
     pageArray: function() {

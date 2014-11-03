@@ -5,6 +5,8 @@ export default Ember.ObjectController.extend({
     tagsSelectionBinding: 'controllers.application.tagsSelection',
     amountsBinding: 'controllers.application.amounts',
     amountsSelectionBinding: 'controllers.application.amountsSelection',
+    isMobileBinding: 'controllers.application.isMobile',
+    isDesktopBinding: 'controllers.application.isDesktop',
     needsValue: function() {
 	var amountObject = this.get('amounts')[this.get('model.amountId')];
 	if(!amountObject) { return false; }
